@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — Design System Visual Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Primary — Indigo */
+      --indigo-50: #EEF2FF;
+      --indigo-100: #E0E7FF;
+      --indigo-200: #C7D2FE;
+      --indigo-400: #818CF8;
+      --indigo-500: #6366F1;
+      --indigo-600: #4F46E5;
+      --indigo-700: #4338CA;
+      --indigo-800: #3730A3;
+      --indigo-900: #312E81;
+
+      /* Secondary — Cyan */
+      --cyan-50: #ECFEFF;
+      --cyan-100: #CFFAFE;
+      --cyan-400: #22D3EE;
+      --cyan-500: #06B6D4;
+      --cyan-600: #0891B2;
+      --cyan-700: #0E7490;
+
+      /* Accent — Amber */
+      --amber-50: #FFFBEB;
+      --amber-100: #FEF3C7;
+      --amber-400: #FBBF24;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+
+      /* Semantic */
+      --success: #10B981;
+      --warning: #F59E0B;
+      --error: #EF4444;
+      --info: #3B82F6;
+
+      /* Neutrals — Slate */
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding: 48px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--indigo-600), var(--cyan-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      color: var(--slate-500);
+    }
+
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--indigo-200);
+      letter-spacing: -0.01em;
+    }
+
+    /* Color Swatches */
+    .color-group {
+      margin-bottom: 32px;
+    }
+
+    .color-group-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.8rem;
+    }
+
+    .color-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch {
+      width: 120px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      background: white;
+    }
+
+    .color-swatch:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .color-swatch .swatch-color {
+      height: 80px;
+      width: 100%;
+    }
+
+    .color-swatch .swatch-info {
+      padding: 10px;
+    }
+
+    .color-swatch .swatch-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+
+    .color-swatch .swatch-hex {
+      font-size: 0.7rem;
+      color: var(--slate-400);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Typography */
+    .type-sample {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+
+    .type-label {
+      min-width: 120px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .type-display { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+    .type-h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+    .type-h2 { font-size: 1.875rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+    .type-h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.4; }
+    .type-h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+    .type-body-lg { font-size: 1.125rem; font-weight: 400; line-height: 1.6; }
+    .type-body { font-size: 1rem; font-weight: 400; line-height: 1.6; }
+    .type-body-sm { font-size: 0.875rem; font-weight: 400; line-height: 1.5; }
+    .type-caption { font-size: 0.75rem; font-weight: 500; line-height: 1.5; letter-spacing: 0.01em; color: var(--slate-500); }
+
+    /* Buttons */
+    .button-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      cursor: pointer;
+      transition: all 150ms ease;
+      text-decoration: none;
+    }
+
+    .btn:hover { transform: scale(1.02); }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary { background: var(--indigo-600); color: white; }
+    .btn-primary:hover { background: var(--indigo-700); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4); }
+
+    .btn-secondary { background: white; color: var(--indigo-600); border: 1.5px solid var(--indigo-200); }
+    .btn-secondary:hover { background: var(--indigo-50); border-color: var(--indigo-400); }
+
+    .btn-danger { background: var(--error); color: white; }
+    .btn-danger:hover { background: #DC2626; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); }
+
+    .btn-ghost { background: transparent; color: var(--slate-700); }
+    .btn-ghost:hover { background: var(--slate-100); }
+
+    .btn-disabled { background: var(--slate-200); color: var(--slate-400); cursor: not-allowed; pointer-events: none; }
+
+    .btn-sm { padding: 6px 14px; font-size: 0.8rem; }
+    .btn-lg { padding: 14px 28px; font-size: 1rem; }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      transition: box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--slate-500);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Badges */
+    .badges-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-urgent { background: #FEE2E2; color: #B91C1C; }
+    .badge-high { background: var(--amber-100); color: #B45309; }
+    .badge-medium { background: #DBEAFE; color: #1D4ED8; }
+    .badge-low { background: #D1FAE5; color: #047857; }
+
+    .badge-todo { background: var(--slate-100); color: var(--slate-600); }
+    .badge-progress { background: var(--cyan-100); color: var(--cyan-700); }
+    .badge-review { background: var(--amber-100); color: #92400E; }
+    .badge-done { background: #D1FAE5; color: #047857; }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 20px;
+      max-width: 420px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--slate-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--slate-800);
+      background: white;
+      transition: all 150ms ease;
+      outline: none;
+    }
+
+    .form-input::placeholder { color: var(--slate-400); }
+    .form-input:focus { border-color: var(--indigo-500); box-shadow: 0 0 0 3px var(--indigo-100); }
+    .form-input.error { border-color: var(--error); box-shadow: 0 0 0 3px #FEE2E2; }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--slate-400);
+      margin-top: 4px;
+    }
+
+    .form-error {
+      font-size: 0.75rem;
+      color: var(--error);
+      margin-top: 4px;
+    }
+
+    /* Semantic Colors */
+    .semantic-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .semantic-card {
+      flex: 1;
+      min-width: 160px;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .semantic-card .icon { font-size: 2rem; margin-bottom: 8px; }
+    .semantic-card .label { font-size: 0.875rem; font-weight: 600; }
+    .semantic-card .hex { font-size: 0.75rem; opacity: 0.7; margin-top: 4px; }
+
+    /* Spacing Demo */
+    .spacing-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .spacing-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .spacing-bar {
+      height: 24px;
+      background: linear-gradient(135deg, var(--indigo-400), var(--cyan-400));
+      border-radius: 4px;
+      opacity: 0.8;
+    }
+
+    .spacing-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      min-width: 100px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Layout Preview */
+    .layout-preview {
+      background: white;
+      border: 2px solid var(--slate-200);
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      display: grid;
+      grid-template-rows: 48px 1fr;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .layout-topbar {
+      grid-column: 1 / -1;
+      background: var(--slate-900);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .layout-topbar .logo {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .layout-topbar .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--indigo-400);
+    }
+
+    .layout-sidebar {
+      background: var(--slate-800);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .layout-sidebar .nav-item {
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--slate-400);
+      cursor: default;
+    }
+
+    .layout-sidebar .nav-item.active {
+      background: var(--indigo-600);
+      color: white;
+    }
+
+    .layout-sidebar .nav-item:not(.active):hover {
+      background: var(--slate-700);
+      color: var(--slate-200);
+    }
+
+    .layout-content {
+      background: var(--slate-50);
+      padding: 24px;
+    }
+
+    .layout-content .content-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 16px;
+    }
+
+    .layout-content .mini-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .layout-content .mini-card {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      border: 1px solid var(--slate-200);
+    }
+
+    .layout-content .mini-card .mc-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .layout-content .mini-card .mc-label {
+      font-size: 0.65rem;
+      color: var(--slate-400);
+      font-weight: 500;
+    }
+
+    .layout-content .content-block {
+      background: white;
+      border-radius: 8px;
+      height: 100px;
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>TaskFlow</h1>
+    <p>Design System — Visual Reference</p>
+  </div>
+
+  <!-- Colors -->
+  <div class="section">
+    <h2 class="section-title">🎨 Color Palette</h2>
+
+    <div class="color-group">
+      <h3 class="color-group-title">Primary — Indigo</h3>
+      <div class="color-row">
+        <div class="color-swatch"><div class="swatch-color" style="background:#EEF2FF"></div><div class="swatch-info"><div class="swatch-name">Indigo 50</div><div class="swatch-hex">#EEF2FF</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#E0E7FF"></div><div class="swatch-info"><div class="swatch-name">Indigo 100</div><div class="swatch-hex">#E0E7FF</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#C7D2FE"></div><div class="swatch-info"><div class="swatch-name">Indigo 200</div><div class="swatch-hex">#C7D2FE</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#818CF8"></div><div class="swatch-info"><div class="swatch-name">Indigo 400</div><div class="swatch-hex">#818CF8</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#6366F1"></div><div class="swatch-info"><div class="swatch-name">Indigo 500</div><div class="swatch-hex">#6366F1</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#4F46E5"></div><div class="swatch-info"><div class="swatch-name">Indigo 600</div><div class="swatch-hex">#4F46E5</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#4338CA"></div><div class="swatch-info"><div class="swatch-name">Indigo 700</div><div class="swatch-hex">#4338CA</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#3730A3"></div><div class="swatch-info"><div class="swatch-name">Indigo 800</div><div class="swatch-hex">#3730A3</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#312E81"></div><div class="swatch-info"><div class="swatch-name">Indigo 900</div><div class="swatch-hex">#312E81</div></div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <h3 class="color-group-title">Secondary — Cyan / Teal</h3>
+      <div class="color-row">
+        <div class="color-swatch"><div class="swatch-color" style="background:#ECFEFF"></div><div class="swatch-info"><div class="swatch-name">Cyan 50</div><div class="swatch-hex">#ECFEFF</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#CFFAFE"></div><div class="swatch-info"><div class="swatch-name">Cyan 100</div><div class="swatch-hex">#CFFAFE</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#22D3EE"></div><div class="swatch-info"><div class="swatch-name">Cyan 400</div><div class="swatch-hex">#22D3EE</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#06B6D4"></div><div class="swatch-info"><div class="swatch-name">Cyan 500</div><div class="swatch-hex">#06B6D4</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#0891B2"></div><div class="swatch-info"><div class="swatch-name">Cyan 600</div><div class="swatch-hex">#0891B2</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#0E7490"></div><div class="swatch-info"><div class="swatch-name">Cyan 700</div><div class="swatch-hex">#0E7490</div></div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <h3 class="color-group-title">Accent — Amber</h3>
+      <div class="color-row">
+        <div class="color-swatch"><div class="swatch-color" style="background:#FFFBEB"></div><div class="swatch-info"><div class="swatch-name">Amber 50</div><div class="swatch-hex">#FFFBEB</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#FEF3C7"></div><div class="swatch-info"><div class="swatch-name">Amber 100</div><div class="swatch-hex">#FEF3C7</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#FBBF24"></div><div class="swatch-info"><div class="swatch-name">Amber 400</div><div class="swatch-hex">#FBBF24</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#F59E0B"></div><div class="swatch-info"><div class="swatch-name">Amber 500</div><div class="swatch-hex">#F59E0B</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#D97706"></div><div class="swatch-info"><div class="swatch-name">Amber 600</div><div class="swatch-hex">#D97706</div></div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <h3 class="color-group-title">Neutrals — Slate</h3>
+      <div class="color-row">
+        <div class="color-swatch"><div class="swatch-color" style="background:#F8FAFC"></div><div class="swatch-info"><div class="swatch-name">Slate 50</div><div class="swatch-hex">#F8FAFC</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#F1F5F9"></div><div class="swatch-info"><div class="swatch-name">Slate 100</div><div class="swatch-hex">#F1F5F9</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#E2E8F0"></div><div class="swatch-info"><div class="swatch-name">Slate 200</div><div class="swatch-hex">#E2E8F0</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#CBD5E1"></div><div class="swatch-info"><div class="swatch-name">Slate 300</div><div class="swatch-hex">#CBD5E1</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#94A3B8"></div><div class="swatch-info"><div class="swatch-name">Slate 400</div><div class="swatch-hex">#94A3B8</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#64748B"></div><div class="swatch-info"><div class="swatch-name">Slate 500</div><div class="swatch-hex">#64748B</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#334155"></div><div class="swatch-info"><div class="swatch-name">Slate 700</div><div class="swatch-hex">#334155</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#1E293B"></div><div class="swatch-info"><div class="swatch-name">Slate 800</div><div class="swatch-hex">#1E293B</div></div></div>
+        <div class="color-swatch"><div class="swatch-color" style="background:#0F172A"></div><div class="swatch-info"><div class="swatch-name">Slate 900</div><div class="swatch-hex">#0F172A</div></div></div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <h3 class="color-group-title">Semantic Colors</h3>
+      <div class="semantic-row">
+        <div class="semantic-card" style="background: #D1FAE5; color: #047857;">
+          <div class="icon">✅</div>
+          <div class="label">Success</div>
+          <div class="hex">#10B981</div>
+        </div>
+        <div class="semantic-card" style="background: #FEF3C7; color: #92400E;">
+          <div class="icon">⚠️</div>
+          <div class="label">Warning</div>
+          <div class="hex">#F59E0B</div>
+        </div>
+        <div class="semantic-card" style="background: #FEE2E2; color: #B91C1C;">
+          <div class="icon">❌</div>
+          <div class="label">Error</div>
+          <div class="hex">#EF4444</div>
+        </div>
+        <div class="semantic-card" style="background: #DBEAFE; color: #1D4ED8;">
+          <div class="icon">ℹ️</div>
+          <div class="label">Info</div>
+          <div class="hex">#3B82F6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typography -->
+  <div class="section">
+    <h2 class="section-title">🔤 Typography</h2>
+    <p style="margin-bottom: 24px; color: var(--slate-500); font-size: 0.9rem;">Font Family: <strong>Inter</strong> — Weights: 300, 400, 500, 600, 700, 800</p>
+
+    <div class="type-sample">
+      <span class="type-label">Display</span>
+      <span class="type-display">TaskFlow</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Heading 1</span>
+      <span class="type-h1">Manage your projects</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Heading 2</span>
+      <span class="type-h2">Recent Activity</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Heading 3</span>
+      <span class="type-h3">Task Details</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Heading 4</span>
+      <span class="type-h4">Project Settings</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Body Large</span>
+      <span class="type-body-lg">Stay on top of your work with a clear overview of all tasks and deadlines.</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Body</span>
+      <span class="type-body">Create, organize, and track your tasks across multiple projects with ease.</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Body Small</span>
+      <span class="type-body-sm">Last updated 2 hours ago by Lucas Miranda.</span>
+    </div>
+    <div class="type-sample">
+      <span class="type-label">Caption</span>
+      <span class="type-caption">DUE JUL 25, 2026 · 3 SUBTASKS</span>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="section">
+    <h2 class="section-title">🔘 Buttons</h2>
+
+    <h3 class="color-group-title" style="margin-bottom: 12px;">Default Size</h3>
+    <div class="button-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-danger">Danger</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-disabled">Disabled</button>
+    </div>
+
+    <h3 class="color-group-title" style="margin-bottom: 12px; margin-top: 24px;">Sizes</h3>
+    <div class="button-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </div>
+
+    <h3 class="color-group-title" style="margin-bottom: 12px; margin-top: 24px;">With Icons</h3>
+    <div class="button-row">
+      <button class="btn btn-primary">➕ New Task</button>
+      <button class="btn btn-secondary">📁 New Project</button>
+      <button class="btn btn-danger">🗑️ Delete</button>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="section">
+    <h2 class="section-title">🏷️ Badges</h2>
+
+    <h3 class="color-group-title" style="margin-bottom: 12px;">Priority Levels</h3>
+    <div class="badges-row">
+      <span class="badge badge-urgent">🔴 Urgent</span>
+      <span class="badge badge-high">🟠 High</span>
+      <span class="badge badge-medium">🔵 Medium</span>
+      <span class="badge badge-low">🟢 Low</span>
+    </div>
+
+    <h3 class="color-group-title" style="margin-bottom: 12px;">Task Status</h3>
+    <div class="badges-row">
+      <span class="badge badge-todo">To Do</span>
+      <span class="badge badge-progress">In Progress</span>
+      <span class="badge badge-review">In Review</span>
+      <span class="badge badge-done">✓ Done</span>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="section">
+    <h2 class="section-title">🃏 Task Cards</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-title">Design login page</div>
+        <div class="card-desc">Create wireframes and implement the login page with form validation and error handling.</div>
+        <div class="card-footer">
+          <span class="badge badge-urgent">🔴 Urgent</span>
+          <span class="badge badge-progress">In Progress</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Set up database schema</div>
+        <div class="card-desc">Define PostgreSQL tables for users, projects, and tasks with proper relationships.</div>
+        <div class="card-footer">
+          <span class="badge badge-high">🟠 High</span>
+          <span class="badge badge-todo">To Do</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Implement search feature</div>
+        <div class="card-desc">Add real-time search functionality to filter tasks by title and description.</div>
+        <div class="card-footer">
+          <span class="badge badge-medium">🔵 Medium</span>
+          <span class="badge badge-review">In Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Inputs -->
+  <div class="section">
+    <h2 class="section-title">📝 Form Inputs</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px;">
+      <div>
+        <div class="form-group">
+          <label class="form-label">Default Input</label>
+          <input type="text" class="form-input" placeholder="Enter task title...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Focused Input</label>
+          <input type="text" class="form-input" value="Design the dashboard" style="border-color: var(--indigo-500); box-shadow: 0 0 0 3px var(--indigo-100);">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Error Input</label>
+          <input type="text" class="form-input error" value="">
+          <div class="form-error">Task title is required</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">With Hint</label>
+          <input type="text" class="form-input" placeholder="e.g., Frontend Development">
+          <div class="form-hint">Choose a descriptive name for your project</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label class="form-label">Select</label>
+          <select class="form-input">
+            <option>Select priority...</option>
+            <option>Urgent</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Textarea</label>
+          <textarea class="form-input" rows="4" placeholder="Describe the task..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacing -->
+  <div class="section">
+    <h2 class="section-title">📐 Spacing Scale (4px base)</h2>
+    <div class="spacing-demo">
+      <div class="spacing-item"><span class="spacing-label">4px (space-1)</span><div class="spacing-bar" style="width: 16px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">8px (space-2)</span><div class="spacing-bar" style="width: 32px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">12px (space-3)</span><div class="spacing-bar" style="width: 48px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">16px (space-4)</span><div class="spacing-bar" style="width: 64px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">20px (space-5)</span><div class="spacing-bar" style="width: 80px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">24px (space-6)</span><div class="spacing-bar" style="width: 96px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">32px (space-8)</span><div class="spacing-bar" style="width: 128px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">40px (space-10)</span><div class="spacing-bar" style="width: 160px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">48px (space-12)</span><div class="spacing-bar" style="width: 192px;"></div></div>
+      <div class="spacing-item"><span class="spacing-label">64px (space-16)</span><div class="spacing-bar" style="width: 256px;"></div></div>
+    </div>
+  </div>
+
+  <!-- Layout Preview -->
+  <div class="section">
+    <h2 class="section-title">📐 Layout Preview</h2>
+    <div class="layout-preview">
+      <div class="layout-topbar">
+        <div class="dot"></div>
+        <div class="logo">TaskFlow</div>
+      </div>
+      <div class="layout-sidebar">
+        <div class="nav-item active">📊 Dashboard</div>
+        <div class="nav-item">📁 Projects</div>
+        <div class="nav-item">✅ Tasks</div>
+        <div class="nav-item">👥 Team</div>
+        <div class="nav-item">⚙️ Settings</div>
+      </div>
+      <div class="layout-content">
+        <div class="content-title">Dashboard</div>
+        <div class="mini-cards">
+          <div class="mini-card">
+            <div class="mc-value" style="color: var(--indigo-600);">12</div>
+            <div class="mc-label">Active Tasks</div>
+          </div>
+          <div class="mini-card">
+            <div class="mc-value" style="color: var(--success);">8</div>
+            <div class="mc-label">Completed</div>
+          </div>
+          <div class="mini-card">
+            <div class="mc-value" style="color: var(--warning);">3</div>
+            <div class="mc-label">Overdue</div>
+          </div>
+        </div>
+        <div class="content-block"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
