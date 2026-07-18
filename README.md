@@ -59,7 +59,7 @@ taskflow/
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/lucas-lab2/TaskFlow.git)](https://github.com/lucas-lab2/TaskFlow.git
 
 # Navigate to the project
 cd taskflow
