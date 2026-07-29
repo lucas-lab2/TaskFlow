@@ -474,6 +474,129 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-3);
 }
 
+/* ---- Navigation Links ---- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--stone-600);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--primary-600);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-500);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ---- Hamburger Button ---- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background: var(--stone-700);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  transform-origin: center;
+}
+
+.hamburger-open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Mobile Menu ---- */
+.mobile-menu {
+  display: none;
+  background: var(--surface);
+  border-top: 1px solid var(--stone-200);
+  padding: var(--space-4) 0 var(--space-6);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.mobile-menu-link {
+  display: block;
+  padding: var(--space-3) 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--stone-700);
+  transition: color var(--transition-fast);
+}
+
+.mobile-menu-link:hover {
+  color: var(--primary-600);
+}
+
+.mobile-menu-divider {
+  border: none;
+  height: 1px;
+  background: var(--stone-200);
+  margin: var(--space-2) 0;
+}
+
+.mobile-menu-cta {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-actions .btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
 /* ---- Hero ---- */
 .hero {
   position: relative;

@@ -1,0 +1,318 @@
+/* ========================================
+   Product Detail Page Styles
+   ======================================== */
+
+/* ---- Breadcrumb ---- */
+.breadcrumb {
+  background: var(--stone-50);
+  border-bottom: 1px solid var(--stone-200);
+  padding: var(--space-4) 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+  color: var(--stone-500);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary-600);
+}
+
+.breadcrumb-separator {
+  color: var(--stone-300);
+  user-select: none;
+}
+
+.breadcrumb-current {
+  color: var(--stone-700);
+  font-weight: 500;
+}
+
+/* ---- Product Detail Layout ---- */
+.product-detail-section {
+  padding-top: var(--space-10);
+}
+
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: flex-start;
+}
+
+/* ---- Product Image ---- */
+.product-detail-image-area {
+  position: sticky;
+  top: 100px;
+}
+
+.product-detail-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.product-detail-emoji {
+  font-size: 8rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ---- Product Info ---- */
+.product-detail-category {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-700);
+  background: var(--primary-50);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+}
+
+.product-detail-title {
+  margin-bottom: var(--space-4);
+}
+
+.product-detail-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.product-detail-stars {
+  color: var(--accent-400);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.product-detail-rating-num {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--stone-800);
+}
+
+.product-detail-review-count {
+  font-size: 0.875rem;
+  color: var(--stone-400);
+}
+
+.product-detail-price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-600);
+  margin-bottom: var(--space-6);
+}
+
+.product-detail-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--stone-600);
+  margin-bottom: var(--space-8);
+}
+
+/* ---- Artisan Card ---- */
+.artisan-card {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--stone-50);
+  border: 1px solid var(--stone-200);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-8);
+}
+
+.artisan-card-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.artisan-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.artisan-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--stone-400);
+  margin-bottom: 2px;
+}
+
+.artisan-card-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--stone-800);
+  margin-bottom: var(--space-1);
+}
+
+.artisan-card-bio {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--stone-500);
+}
+
+/* ---- Actions ---- */
+.product-detail-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.product-detail-add-cart {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ---- Reviews ---- */
+.product-reviews-section {
+  padding-top: var(--space-12);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--stone-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.review-card-author-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.review-card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-100);
+  color: var(--primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.review-card-author {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--stone-800);
+}
+
+.review-card-date {
+  font-size: 0.8125rem;
+  color: var(--stone-400);
+}
+
+.review-card-stars {
+  color: var(--accent-400);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.review-card-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--stone-600);
+}
+
+/* ---- Related Products ---- */
+.related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .product-detail-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .product-detail-image-area {
+    position: static;
+  }
+
+  .product-detail-emoji {
+    font-size: 6rem;
+  }
+
+  .related-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .product-detail-actions {
+    flex-direction: column;
+  }
+
+  .product-detail-actions .btn {
+    width: 100%;
+  }
+
+  .product-detail-price {
+    font-size: 1.75rem;
+  }
+
+  .related-products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artisan-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .review-card-header {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}

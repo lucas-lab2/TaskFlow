@@ -1,0 +1,84 @@
+/* ========================================
+   Register Page — Additional Styles
+   (Extends login.css auth styles)
+   ======================================== */
+
+/* ---- Password Strength Indicator ---- */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.password-strength-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--stone-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.password-strength-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.strength-weak::after {
+  width: 33%;
+  background: var(--error);
+}
+
+.strength-medium::after {
+  width: 66%;
+  background: var(--warning);
+}
+
+.strength-strong::after {
+  width: 100%;
+  background: var(--success);
+}
+
+.password-strength-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 52px;
+  text-align: right;
+}
+
+.strength-weak + .password-strength-label,
+.password-strength-bar.strength-weak ~ .password-strength-label {
+  color: var(--error);
+}
+
+.strength-medium + .password-strength-label,
+.password-strength-bar.strength-medium ~ .password-strength-label {
+  color: var(--warning);
+}
+
+.strength-strong + .password-strength-label,
+.password-strength-bar.strength-strong ~ .password-strength-label {
+  color: var(--success);
+}
+
+/* ---- Register Form Adjustments ---- */
+.auth-form-container .form-checkbox-label .form-link {
+  display: inline;
+  margin: 0 2px;
+}
+
+/* Register branding panel — slightly different gradient */
+.auth-page:has(#register-form) .auth-brand-panel {
+  background: linear-gradient(
+    135deg,
+    var(--primary-600) 0%,
+    var(--primary-500) 40%,
+    var(--secondary-400) 100%
+  );
+}

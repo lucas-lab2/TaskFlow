@@ -1,24 +1,6 @@
 export default function Home() {
   return (
     <div>
-      {/* ===== Navigation ===== */}
-      <nav className="nav" id="main-nav">
-        <div className="container nav-inner">
-          <a href="/" className="nav-logo" id="nav-logo">
-            <div className="nav-logo-icon" aria-hidden="true">H</div>
-            <span className="nav-logo-text">Handcrafted Haven</span>
-          </a>
-          <div className="nav-actions">
-            <a href="/login" className="btn btn-ghost" id="nav-sign-in">
-              Sign In
-            </a>
-            <a href="/register" className="btn btn-primary btn-small" id="nav-get-started">
-              Get Started
-            </a>
-          </div>
-        </div>
-      </nav>
-
       {/* ===== Hero Section ===== */}
       <section className="hero" id="hero">
         <div className="container">
@@ -43,7 +25,7 @@ export default function Home() {
               <a href="/register" className="btn btn-primary btn-large" id="hero-cta-primary">
                 Start Selling →
               </a>
-              <a href="#categories" className="btn btn-secondary btn-large" id="hero-cta-secondary">
+              <a href="/products" className="btn btn-secondary btn-large" id="hero-cta-secondary">
                 Browse Products
               </a>
             </div>
@@ -90,29 +72,29 @@ export default function Home() {
           </div>
 
           <div className="grid grid-4 animate-fade-in-up delay-200">
-            <div className="category-card" id="category-pottery">
+            <a href="/products?category=Pottery+%26+Ceramics" className="category-card" id="category-pottery">
               <div className="category-icon category-icon-terra">🏺</div>
               <div className="category-name">Pottery &amp; Ceramics</div>
               <div className="category-count">180+ items</div>
-            </div>
+            </a>
 
-            <div className="category-card" id="category-jewelry">
+            <a href="/products?category=Jewelry" className="category-card" id="category-jewelry">
               <div className="category-icon category-icon-amber">💍</div>
               <div className="category-name">Jewelry</div>
               <div className="category-count">320+ items</div>
-            </div>
+            </a>
 
-            <div className="category-card" id="category-textiles">
+            <a href="/products?category=Textiles+%26+Fiber" className="category-card" id="category-textiles">
               <div className="category-icon category-icon-green">🧶</div>
               <div className="category-name">Textiles &amp; Fiber</div>
               <div className="category-count">240+ items</div>
-            </div>
+            </a>
 
-            <div className="category-card" id="category-woodwork">
+            <a href="/products?category=Woodwork" className="category-card" id="category-woodwork">
               <div className="category-icon category-icon-stone">🪵</div>
               <div className="category-name">Woodwork</div>
               <div className="category-count">160+ items</div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -245,21 +227,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ===== Footer ===== */}
-      <footer className="footer" id="main-footer">
-        <div className="container footer-content">
-          <p className="footer-text">
-            © 2026 Handcrafted Haven — Built for WDD 430 · Web Full-Stack
-            Development · BYU-Idaho
-          </p>
-          <nav className="footer-links" aria-label="Footer navigation">
-            <a href="#categories">Categories</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#testimonials">Reviews</a>
-          </nav>
-        </div>
-      </footer>
     </div>
   );
 }
