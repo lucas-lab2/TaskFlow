@@ -1,10 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: session, status } = useSession();
+  const isAuthenticated = status === "authenticated";
+  const isSeller = session?.user?.role === "SELLER";
+
+  // Generate initials for avatar
+  const initials = session?.user?.name
+    ? session.user.name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2)
+    : "U";
 
   return (
     <nav className="nav" id="main-nav">
@@ -24,22 +38,47 @@ export default function Header() {
           <Link href="/#categories" className="nav-link">
             Categories
           </Link>
-          <Link href="/#how-it-works" className="nav-link">
-            How It Works
-          </Link>
+          {isAuthenticated && isSeller && (
+            <Link href="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+          )}
         </div>
 
         <div className="nav-actions">
-          <Link href="/login" className="btn btn-ghost" id="nav-sign-in">
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="btn btn-primary btn-small"
-            id="nav-get-started"
-          >
-            Get Started
-          </Link>
+          {isAuthenticated ? (
+            <>
+              {/* User Avatar & Menu */}
+              <Link
+                href={isSeller ? "/dashboard" : "/products"}
+                className="nav-user-badge"
+                id="nav-user-badge"
+              >
+                <div className="nav-user-avatar">{initials}</div>
+                <span className="nav-user-name">{session.user.name}</span>
+              </Link>
+              <button
+                className="btn btn-ghost btn-small"
+                id="nav-sign-out"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className="btn btn-ghost" id="nav-sign-in">
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                className="btn btn-primary btn-small"
+                id="nav-get-started"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
 
           {/* Mobile Hamburger */}
           <button
@@ -74,28 +113,50 @@ export default function Header() {
             >
               Categories
             </Link>
-            <Link
-              href="/#how-it-works"
-              className="mobile-menu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              How It Works
-            </Link>
+            {isAuthenticated && isSeller && (
+              <Link
+                href="/dashboard"
+                className="mobile-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+            )}
             <hr className="mobile-menu-divider" />
-            <Link
-              href="/login"
-              className="mobile-menu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              className="btn btn-primary mobile-menu-cta"
-              onClick={() => setMenuOpen(false)}
-            >
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <div className="mobile-menu-user">
+                  <div className="nav-user-avatar">{initials}</div>
+                  <span>{session.user.name}</span>
+                </div>
+                <button
+                  className="btn btn-secondary mobile-menu-cta"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    signOut({ callbackUrl: "/" });
+                  }}
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="mobile-menu-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className="btn btn-primary mobile-menu-cta"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -446,3 +446,77 @@
     gap: var(--space-2);
   }
 }
+
+/* ---- Server Error Banner ---- */
+.auth-server-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-lg);
+  color: var(--error);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--space-4);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.auth-error-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* ---- Nav User Badge ---- */
+.nav-user-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 12px 4px 4px;
+  border-radius: var(--radius-full);
+  background: var(--stone-100);
+  transition: background var(--transition-fast);
+  text-decoration: none;
+}
+
+.nav-user-badge:hover {
+  background: var(--primary-50);
+}
+
+.nav-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nav-user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--stone-700);
+}
+
+/* ---- Mobile Menu User ---- */
+.mobile-menu-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  font-weight: 500;
+  color: var(--stone-700);
+}
+
+@media (max-width: 768px) {
+  .nav-user-name {
+    display: none;
+  }
+}
+

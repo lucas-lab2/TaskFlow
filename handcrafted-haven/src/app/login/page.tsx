@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import "./login.css";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function validate() {
@@ -27,17 +31,33 @@ export default function LoginPage() {
     return newErrors;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setServerError("");
     const newErrors = validate();
     setErrors(newErrors);
+
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true);
-      // Simulate submission — will connect to backend in future sprint
-      setTimeout(() => {
+      try {
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (result?.error) {
+          setServerError(result.error);
+        } else {
+          // Redirect to dashboard for sellers, home for buyers
+          router.push("/");
+          router.refresh();
+        }
+      } catch {
+        setServerError("Something went wrong. Please try again.");
+      } finally {
         setIsSubmitting(false);
-        alert("Login functionality will be connected to the backend in a future sprint.");
-      }, 1000);
+      }
     }
   }
 
@@ -80,6 +100,13 @@ export default function LoginPage() {
               Enter your credentials to access your account
             </p>
           </div>
+
+          {serverError && (
+            <div className="auth-server-error" role="alert">
+              <span className="auth-error-icon">⚠️</span>
+              {serverError}
+            </div>
+          )}
 
           <form
             className="auth-form"

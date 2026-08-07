@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import "../login/login.css";
 import "./register.css";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +17,7 @@ export default function RegisterPage() {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [serverError, setServerError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function validate() {
@@ -42,19 +46,54 @@ export default function RegisterPage() {
     return newErrors;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setServerError("");
     const newErrors = validate();
     setErrors(newErrors);
+
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true);
-      // Simulate submission — will connect to backend in future sprint
-      setTimeout(() => {
+      try {
+        // Register the user
+        const res = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: fullName,
+            email,
+            password,
+            role,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setServerError(data.error || "Registration failed");
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Auto sign-in after successful registration
+        const signInResult = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (signInResult?.error) {
+          // Registration succeeded but auto-login failed — redirect to login
+          router.push("/login");
+        } else {
+          router.push("/");
+          router.refresh();
+        }
+      } catch {
+        setServerError("Something went wrong. Please try again.");
+      } finally {
         setIsSubmitting(false);
-        alert(
-          "Registration functionality will be connected to the backend in a future sprint."
-        );
-      }, 1000);
+      }
     }
   }
 
@@ -97,6 +136,13 @@ export default function RegisterPage() {
               Start your handcrafted journey today
             </p>
           </div>
+
+          {serverError && (
+            <div className="auth-server-error" role="alert">
+              <span className="auth-error-icon">⚠️</span>
+              {serverError}
+            </div>
+          )}
 
           <form
             className="auth-form"

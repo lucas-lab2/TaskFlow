@@ -1,0 +1,75 @@
+// ========================================
+// Handcrafted Haven — Prisma Schema
+// Database models for the marketplace
+// ========================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---- User Model ----
+model User {
+  id             String    @id @default(cuid())
+  name           String
+  email          String    @unique
+  hashedPassword String
+  role           Role      @default(BUYER)
+  bio            String?
+  image          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  products       Product[]
+  reviews        Review[]
+
+  @@map("users")
+}
+
+enum Role {
+  BUYER
+  SELLER
+}
+
+// ---- Product Model ----
+model Product {
+  id              String   @id @default(cuid())
+  name            String
+  description     String
+  longDescription String?
+  price           Float
+  category        String
+  imageUrl        String?
+  imageGradient   String?
+  imageEmoji      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  seller          User     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  sellerId        String
+  reviews         Review[]
+
+  @@map("products")
+}
+
+// ---- Review Model ----
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  text      String
+  createdAt DateTime @default(now())
+
+  // Relations
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+
+  @@unique([productId, authorId]) // One review per product per user
+  @@map("reviews")
+}
